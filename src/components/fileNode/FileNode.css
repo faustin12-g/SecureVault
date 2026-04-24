@@ -1,0 +1,195 @@
+/* FileNode.css - Recursive tree item styling */
+
+.file-node-wrapper {
+  width: 100%;
+}
+
+.file-node {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 8px 8px;
+  margin: 2px 0;
+  border-left: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  outline: none;
+  position: relative;
+}
+
+/* Hover state */
+.file-node:hover {
+  background-color: var(--color-surface);
+  border-left-color: var(--color-primary);
+}
+
+/* Focus state (keyboard navigation) */
+.file-node:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Selected state */
+.file-node.selected {
+  background-color: var(--color-surface);
+  border-left-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.file-node.selected .file-name {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Content layout */
+.node-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* Expand/collapse arrow */
+.expand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--color-text);
+  transition: transform 200ms ease-out;
+  cursor: pointer;
+}
+
+.expand-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.expand-icon.invisible {
+  visibility: hidden;
+  cursor: default;
+}
+
+/* File icon */
+.file-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.file-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+}
+
+/* File/folder name */
+.file-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* File size badge */
+.file-size {
+  display: inline-block;
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--color-text);
+  font-family: monospace;
+  min-width: max-content;
+  padding-left: 8px;
+}
+
+/* Empty folder message */
+.empty-folder {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 28px;
+  padding: 4px 8px;
+  margin: 2px 0;
+  font-size: 12px;
+  color: var(--color-text);
+  font-style: italic;
+  margin-left: calc(16px + 16px + 8px);
+}
+
+.empty-folder span {
+  font-size: 14px;
+}
+
+/* Children container (for nested items) */
+.children-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Folder-specific styling */
+.file-node.folder {
+  /* Folders are already styled above */
+}
+
+.file-node.folder:hover .file-icon {
+  transform: scale(1.1);
+  transition: transform 150ms ease-in;
+}
+
+/* File-specific styling */
+.file-node.file {
+  /* Files have slightly different visual treatment */
+}
+
+.file-node.file .file-icon {
+  opacity: 0.9;
+}
+
+/* Accessibility improvements */
+.file-node:focus-visible {
+  outline: 2px solid var(--color-surface);
+  outline-offset: -2px;
+}
+
+/* Dark mode adjustments (already in design, but ensuring contrast) */
+@media (prefers-color-scheme: dark) {
+  .file-node {
+    color: var(--color-text);
+  }
+
+  .file-node:hover {
+    background-color: var(--color-surface);
+  }
+
+  .file-node.selected {
+    background-color: var(--color-surface);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .file-node:focus {
+    outline-width: 3px;
+  }
+
+  .file-node.selected {
+    border-left-width: 4px;
+  }
+}

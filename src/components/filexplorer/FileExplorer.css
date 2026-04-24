@@ -1,0 +1,186 @@
+/* FileExplorer.css - Main explorer container */
+
+.file-explorer-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-surface);
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Header */
+.explorer-header {
+  flex-shrink: 0;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-surface);
+  background-color: var(--color-bg);
+}
+
+.explorer-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.explorer-header h2 svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Search bar */
+.explorer-search {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-surface);
+  background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--color-surface);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 150ms ease-in-out;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--color-text);
+}
+
+.search-input:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+.search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.search-clear:hover {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.search-clear svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Main content area - scrollable */
+.explorer-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 0;
+  background-color: var(--color-bg);
+}
+
+.tree-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Empty state */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.empty-state p {
+  font-size: 14px;
+  margin: 0;
+  padding: 0 16px;
+}
+
+/* Footer with hints */
+.explorer-footer {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-top: 1px solid var(--color-surface);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Scrollbar styling for dark mode */
+.explorer-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explorer-content::-webkit-scrollbar-track {
+  background-color: var(--color-bg);
+}
+
+.explorer-content::-webkit-scrollbar-thumb {
+  background-color: var(--color-bg);
+  border-radius: 4px;
+}
+
+.explorer-content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+/* Firefox scrollbar */
+.explorer-content {
+  scrollbar-color: var(--color-primary) var(--color-bg);
+  scrollbar-width: thin;
+}
+
+/* Focus ring for tree */
+.file-explorer-container:focus-within {
+  /* Subtle indicator when focused */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .explorer-header h2 {
+    font-size: 18px;
+  }
+
+  .explorer-footer {
+    font-size: 10px;
+  }
+}

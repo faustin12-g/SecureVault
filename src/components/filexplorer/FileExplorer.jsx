@@ -15,7 +15,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       if (focusedNodeId && nodeRefsMap.current.has(focusedNodeId)) {
         nodeRefsMap.current.get(focusedNodeId)?.focus();
       } else {
-        // Focus first visible node if none selected
         const nodeIds = buildNodeList(filteredData);
         if (nodeIds.length > 0) {
           const firstNodeId = nodeIds[0];
@@ -26,8 +25,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       onFocusChange?.();
     }
   }));
-
-  // Register a node ref
   const registerNodeRef = (nodeId, ref) => {
     if (ref) {
       nodeRefsMap.current.set(nodeId, ref);
@@ -35,8 +32,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       nodeRefsMap.current.delete(nodeId);
     }
   };
-
-  // Expand/collapse folder
   const handleExpandChange = (folderId) => {
     setExpandedFolders(prev => {
       const newSet = new Set(prev);
@@ -48,10 +43,7 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       return newSet;
     });
   };
-
-  // Select a file
   const handleSelectFile = (file) => {
-    // Find the path to this file
     const findPath = (items, targetId, currentPath = 'My Vault') => {
       for (let item of items) {
         if (item.id === targetId) {
@@ -68,8 +60,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
     const filePath = findPath(data, file.id) || 'My Vault';
     onSelectFile(file, filePath);
   };
-
-  // Build flat list of all visible nodes for keyboard nav
   const buildNodeList = (nodes, result = []) => {
     nodes.forEach(node => {
       result.push(node.id);
@@ -79,8 +69,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
     });
     return result;
   };
-
-  // Keyboard navigation
   const handleKeyDown = (e) => {
     const nodeIds = buildNodeList(filteredData);
     const currentIndex = focusedNodeId ? nodeIds.indexOf(focusedNodeId) : -1;
@@ -91,7 +79,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       if (nodeIds.length > 0) {
         const prevNodeId = nodeIds[prevIndex];
         setFocusedNodeId(prevNodeId);
-        // Focus the ref after state update
         setTimeout(() => {
           nodeRefsMap.current.get(prevNodeId)?.focus();
         }, 0);
@@ -102,7 +89,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
       if (nodeIds.length > 0) {
         const nextNodeId = nodeIds[nextIndex];
         setFocusedNodeId(nextNodeId);
-        // Focus the ref after state update
         setTimeout(() => {
           nodeRefsMap.current.get(nextNodeId)?.focus();
         }, 0);
@@ -110,7 +96,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
     }
   };
 
-  // Filter nodes based on search query
   const filterAndExpandNodes = (nodes, query, parentFolders = new Set()) => {
     if (!query.trim()) return { filtered: nodes, toExpand: new Set() };
 
@@ -150,10 +135,7 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
     return { filtered, toExpand, hasMatch };
   };
 
-  // Apply search filter
   const { filtered: filteredData, toExpand: nodesToExpand } = filterAndExpandNodes(data, searchQuery);
-
-  // Auto-expand folders with search matches
   useEffect(() => {
     if (searchQuery.trim()) {
       setExpandedFolders(prev => {
@@ -165,7 +147,6 @@ const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChan
     }
   }, [searchQuery, nodesToExpand]);
 
-  // Reset focused node when data changes
   useEffect(() => {
     setFocusedNodeId(null);
   }, [filteredData]);

@@ -110,15 +110,12 @@ const SidePanel = forwardRef(({ selectedFile, selectedFilePath, onClose, isFocus
           </div>
 
           <div className="panel-content">
-            {/* File Icon and Name */}
             <div className="file-header">
               <div className="file-icon-large">
                 {getFileIcon(selectedFile.name)}
               </div>
               <h2 className="file-name">{selectedFile.name}</h2>
             </div>
-
-            {/* Details Section */}
             <div className="details-section">
               <h4>DETAILS</h4>
               <div className="details-grid">
@@ -156,7 +153,6 @@ const SidePanel = forwardRef(({ selectedFile, selectedFilePath, onClose, isFocus
               </div>
             </div>
 
-            {/* Tags Section */}
             <div className="tags-section">
               <h4>TAGS</h4>
               <div className="tags-container">
@@ -167,14 +163,12 @@ const SidePanel = forwardRef(({ selectedFile, selectedFilePath, onClose, isFocus
               </div>
             </div>
 
-            {/* Permissions Section */}
             <div className="permissions-section">
               <h4>PERMISSIONS</h4>
               <p className="permission-text">Only you have access</p>
               <button className="manage-access-btn">Manage Access</button>
             </div>
 
-            {/* Actions Section */}
             <div className="actions-section">
               <button 
                 className="action-btn primary"

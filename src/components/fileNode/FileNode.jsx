@@ -26,7 +26,6 @@ const FileNode = forwardRef(({
 }, ref) => {
   const nodeRef = useRef(null);
 
-  // Register this node's ref when mounted
   useEffect(() => {
     if (registerRef && nodeRef.current) {
       registerRef(node.id, nodeRef.current);
@@ -56,13 +55,11 @@ const FileNode = forwardRef(({
   };
 
   const handleKeyDown = (e) => {
-    // Pass up to parent handler for navigation
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
       parentKeyDown?.(e);
       return;
     }
 
-    // Handle expand/collapse for arrow keys
     if (e.key === 'ArrowRight' && isFolder && !isExpanded) {
       e.preventDefault();
       onExpandChange(node.id);
@@ -79,7 +76,6 @@ const FileNode = forwardRef(({
     }
   };
 
-  // Get file type icon
   const getFileIcon = () => {
     if (isFolder) {
       return <FiFolder />;

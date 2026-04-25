@@ -36,7 +36,6 @@ const Sidebar = forwardRef(({ isOpen, isFocused, onFocusChange }, ref) => {
       setTimeout(() => navItemsRef.current[newIndex]?.focus(), 0);
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      // TODO: Handle nav item click
       console.log('Selected nav item:', navItems[index].label);
     }
   };

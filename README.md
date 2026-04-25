@@ -57,19 +57,31 @@ SecureVault-Dashboard is a production-ready file management interface designed f
 The application uses a minimal **4-color design system** defined in [src/index.css](src/index.css):
 
 ```css
+/* Dark Theme (Default) */
 :root {
-  --color-bg: #000000;           /* Background */
-  --color-surface: #111827;      /* UI Elements */
-  --color-primary: #3B82F6;      /* Accent/Interactive */
-  --color-text: #E5E7EB;         /* Text */
+  --color-bg: #000000;           /* Pure black background */
+  --color-surface: #181819;      /* Slightly lighter for UI elements */
+  --color-primary: #C6A75A;      /* Golden accent for interactive elements */
+  --color-text: #E5E7EB;         /* Light gray text */
+  --color-border: #161616;       /* Subtle borders */
+}
+
+/* Light Theme */
+:root[data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-primary: #C6A75A;      /* Same golden accent */
+  --color-text: #101011;         /* Dark text */
+  --color-border: #8d8e90;
 }
 ```
 
 **Design Principles:**
-- **Dark Mode Aesthetic**: Cyber-secure, precise, fast
-- **No Gradients**: Solid colors only for consistency
+- **Dark Mode + Light Mode**: Toggle via Sun/Moon icon in header
+- **No Gradients**: Solid colors only for consistency and maintainability
+- **No Component Libraries**: 100% custom React components with vanilla CSS
 - **Responsive**: Breakpoints at 1200px, 1024px, 768px
-- **Accessible**: WCAG AA compliance, clear focus states
+- **Accessible**: WCAG AA compliance, clear focus states, keyboard-first navigation
 
 ## Getting Started
 
@@ -170,14 +182,42 @@ Build visible array → Update focus via ref → Re-render → Focus moves
 
 ## Keyboard Shortcuts
 
+### Within File Explorer
 | Key | Action |
 |-----|--------|
-| <kbd>↑</kbd> | Navigate to previous item |
-| <kbd>↓</kbd> | Navigate to next item |
+| <kbd>↑</kbd> | Navigate to previous item in tree |
+| <kbd>↓</kbd> | Navigate to next item in tree |
 | <kbd>→</kbd> | Expand folder (if closed) |
 | <kbd>←</kbd> | Collapse folder (if open) |
-| <kbd>Enter</kbd> | Select file |
-| <kbd>Ctrl+K</kbd> or Focus search bar | Start searching |
+| <kbd>Enter</kbd> | Select file and open properties |
+
+### Within Sidebar Navigation
+| Key | Action |
+|-----|--------|
+| <kbd>↑</kbd> | Previous nav item (My Vault, Shared, Recent, Starred, Trash) |
+| <kbd>↓</kbd> | Next nav item |
+| <kbd>Enter</kbd> | Activate nav item |
+
+### Within Properties Panel
+| Key | Action |
+|-----|--------|
+| <kbd>↑</kbd> | Previous action button |
+| <kbd>↓</kbd> | Next action button (Download, Share, Copy Path) |
+| <kbd>Enter</kbd> | Activate button |
+
+### Cross-Section Navigation (NEW - Wildcard Feature)
+| Key | Action |
+|-----|--------|
+| <kbd>Tab</kbd> | Move focus right: Sidebar → Explorer → Properties |
+| <kbd>Shift+Tab</kbd> | Move focus left: Properties → Explorer → Sidebar |
+| <kbd>→</kbd> | Navigate right between sections (when not in search/input) |
+| <kbd>←</kbd> | Navigate left between sections (when not in search/input) |
+
+### Other
+| Key | Action |
+|-----|--------|
+| Theme Toggle Icon | Switch between Dark/Light mode |
+| Hamburger Menu | Toggle sidebar (220px ↔ 70px) |
 
 ## Project Structure
 
@@ -250,34 +290,52 @@ The application reads from `src/assets/data.json`:
 - [x] UI renders folder structure from JSON
 - [x] Recursive component handles unlimited nesting
 - [x] Folders expand/collapse on click
+- [x] Smooth animations and visual feedback
 
 ### Story 2: File Details ✓
 - [x] Clicking file provides distinct visual state
 - [x] Properties Panel displays Name, Type, Size, metadata
-- [x] Additional metadata: Location, Modified, Created, Owner
+- [x] Additional metadata: Location (dynamic path), Modified, Created, Owner
+- [x] Tags system with visual badges
+- [x] Permissions and access management sections
 
 ### Story 3: Keyboard Accessibility ✓
 - [x] Arrow Up/Down navigate visible items
 - [x] Arrow Right expands, Left collapses
 - [x] Enter selects files
+- [x] Tab/Shift+Tab navigate between sections (NEW)
+- [x] Focus management with visible focus rings
+- [x] Keyboard-only users can complete all tasks
 
-### Story 4: Wildcard Feature ✓
-- [x] **Search & Auto-Expand**: Implemented search bar with intelligent folder expansion
-- [x] When searching for text, matching files show in context with parents expanded
-- [x] Adds significant UX value for power users finding files in large structures
-
-### Bonus: Search & Filter ✓
+### Story 4: Wildcard Feature - Search & Auto-Expand ✓
 - [x] Real-time search filtering
 - [x] Auto-expand matching parent folders
 - [x] Case-insensitive matching
+- [x] Clear search button with visual feedback
+
+### Story 5: Wildcard Feature - Cross-Section Keyboard Navigation ✓
+- [x] Tab/Shift+Tab move focus between Sidebar → Explorer → Properties
+- [x] Arrow Right/Left navigate between sections
+- [x] Intelligent focus management prevents search/input interference
+- [x] Global keyboard event handler coordinates all sections
+
+### Bonus Features ✓
+- [x] **Theme Toggle**: Dark mode (default) and Light mode with persistent storage
+- [x] **Sidebar Toggle**: Hamburger menu minimizes sidebar (220px → 70px)
+- [x] **Custom Logo Icon**: Imported custom PNG icon for branding
+- [x] **4-Color Design System**: Minimal, maintainable CSS variables
+- [x] **File Type Detection**: 9+ file types with contextual colors
+- [x] **Storage Indicator**: Visual progress bar showing storage usage
 
 ## Gatekeeper Checklist
 
 - [x] **Public Repository**: GitHub set to public
 - [x] **Audit-Ready History**: Multiple commits showing progression
-- [x] **Working Deployment**: Tested in private window (or ready at localhost:5173)
+- [x] **Working Deployment**: Tested at localhost:5173
 - [x] **No Restricted Libraries**: Built with React, Vite, Tailwind only (no Bootstrap/Material/Chakra)
 - [x] **Design File Access**: [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) included
+- [x] **Custom Documentation**: Replaced boilerplate README with project-specific docs
+- [x] **All Acceptance Criteria**: 5 stories + 2 wildcard features complete
 - [x] **Professional Documentation**: This README replaces assignment instructions
 
 ## Deployment

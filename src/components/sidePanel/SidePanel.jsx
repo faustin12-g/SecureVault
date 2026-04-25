@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, forwardRef, useImperativeHandle, useState } from 'react';
 import { 
   FiFile, 
   FiFileText, 
@@ -15,7 +15,20 @@ import {
 import { FaFilePdf, FaFileExcel, FaFileWord } from 'react-icons/fa';
 import '../sidePanel/SidePanel.css';
 
-const SidePanel = ({ selectedFile, selectedFilePath, onClose }) => {
+const SidePanel = forwardRef(({ selectedFile, selectedFilePath, onClose, isFocused, onFocusChange }, ref) => {
+  const [focusedButtonIndex, setFocusedButtonIndex] = useState(0);
+  const actionButtonsRef = useRef([]);
+  const panelRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    focusPanel: () => {
+      if (selectedFile && actionButtonsRef.current.length > 0) {
+        setFocusedButtonIndex(0);
+        setTimeout(() => actionButtonsRef.current[0]?.focus(), 0);
+      }
+      onFocusChange?.();
+    }
+  }));
   const formatFileType = (fileName) => {
     if (!fileName) return 'Unknown';
     const ext = fileName.split('.').pop().toUpperCase();
@@ -71,13 +84,27 @@ const SidePanel = ({ selectedFile, selectedFilePath, onClose }) => {
     return 'File';
   };
 
+  const handleActionButtonKeyDown = (e, index) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newIndex = index > 0 ? index - 1 : actionButtonsRef.current.length - 1;
+      setFocusedButtonIndex(newIndex);
+      setTimeout(() => actionButtonsRef.current[newIndex]?.focus(), 0);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newIndex = index < actionButtonsRef.current.length - 1 ? index + 1 : 0;
+      setFocusedButtonIndex(newIndex);
+      setTimeout(() => actionButtonsRef.current[newIndex]?.focus(), 0);
+    }
+  };
+
   return (
-    <div className="side-panel-container">
+    <div className="side-panel-container" ref={panelRef}>
       {selectedFile ? (
         <>
           <div className="panel-header">
             <h3>PROPERTIES</h3>
-            <button className="close-btn" onClick={onClose}>
+            <button className="close-btn" onClick={onClose} onFocus={onFocusChange}>
               <FiX size={20} />
             </button>
           </div>
@@ -149,13 +176,40 @@ const SidePanel = ({ selectedFile, selectedFilePath, onClose }) => {
 
             {/* Actions Section */}
             <div className="actions-section">
-              <button className="action-btn primary">
+              <button 
+                className="action-btn primary"
+                ref={(el) => actionButtonsRef.current[0] = el}
+                tabIndex={isFocused && focusedButtonIndex === 0 ? 0 : -1}
+                onKeyDown={(e) => handleActionButtonKeyDown(e, 0)}
+                onFocus={() => {
+                  setFocusedButtonIndex(0);
+                  onFocusChange?.();
+                }}
+              >
                 <FiDownload /> Download
               </button>
-              <button className="action-btn">
+              <button 
+                className="action-btn"
+                ref={(el) => actionButtonsRef.current[1] = el}
+                tabIndex={isFocused && focusedButtonIndex === 1 ? 0 : -1}
+                onKeyDown={(e) => handleActionButtonKeyDown(e, 1)}
+                onFocus={() => {
+                  setFocusedButtonIndex(1);
+                  onFocusChange?.();
+                }}
+              >
                 <FiShare2 /> Share
               </button>
-              <button className="action-btn">
+              <button 
+                className="action-btn"
+                ref={(el) => actionButtonsRef.current[2] = el}
+                tabIndex={isFocused && focusedButtonIndex === 2 ? 0 : -1}
+                onKeyDown={(e) => handleActionButtonKeyDown(e, 2)}
+                onFocus={() => {
+                  setFocusedButtonIndex(2);
+                  onFocusChange?.();
+                }}
+              >
                 <FiCopy /> Copy Path
               </button>
             </div>
@@ -170,6 +224,8 @@ const SidePanel = ({ selectedFile, selectedFilePath, onClose }) => {
       )}
     </div>
   );
-};
+});
+
+SidePanel.displayName = 'SidePanel';
 
 export default SidePanel;

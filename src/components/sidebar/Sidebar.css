@@ -80,6 +80,12 @@
   color: var(--color-primary);
 }
 
+.vault-logo-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 /* Navigation */
 .sidebar-nav {
   flex: 1;
@@ -145,6 +151,11 @@
 
 .nav-item.active svg {
   color: var(--color-primary);
+}
+
+.nav-item.focus-ring {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 /* Storage section */

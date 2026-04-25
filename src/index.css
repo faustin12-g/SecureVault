@@ -5,7 +5,7 @@
   /* Dark Theme (Default) */
   --color-bg: #000000;
   --color-surface: #181819;
-  --color-primary: lab(71.1% -5.42 38.46);
+  --color-primary: #C6A75A;
   --color-text: #E5E7EB;
   --color-border: #161616;
 }
@@ -14,9 +14,9 @@
   /* Light Theme */
   --color-bg: #FFFFFF;
   --color-surface: #F5F5F5;
-  --color-primary: lab(71.1% -5.42 38.46);
-  --color-text: #1F2937;
-  --color-border: #E5E7EB;
+  --color-primary: #C6A75A;
+  --color-text: #101011;
+  --color-border: #8d8e90;
 }
 
 /* Global styles for SecureVault Dark Theme */

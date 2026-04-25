@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { 
   FiChevronRight, 
   FiFolder, 
@@ -21,7 +21,8 @@ const FileNode = forwardRef(({
   expandedFolders,
   level = 0,
   onKeyDown: parentKeyDown,
-  registerRef
+  registerRef,
+  onFocusChange
 }, ref) => {
   const nodeRef = useRef(null);
 
@@ -109,6 +110,7 @@ const FileNode = forwardRef(({
         style={{ paddingLeft: `${level * 16}px` }}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        onFocus={onFocusChange}
         tabIndex={0}
         role="treeitem"
         aria-expanded={isFolder ? isExpanded : undefined}
@@ -147,6 +149,7 @@ const FileNode = forwardRef(({
               level={level + 1}
               onKeyDown={parentKeyDown}
               registerRef={registerRef}
+              onFocusChange={onFocusChange}
             />
           ))}
         </div>

@@ -1,14 +1,31 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { FiFolder, FiSearch, FiX } from 'react-icons/fi';
 import FileNode from '../fileNode/FileNode';
 import '../filexplorer/FileExplorer.css';
 
-const FileExplorer = ({ data, onSelectFile, selectedFile, onKeyboardNav }) => {
+const FileExplorer = forwardRef(({ data, onSelectFile, selectedFile, onFocusChange }, ref) => {
   const [expandedFolders, setExpandedFolders] = useState(new Set());
   const [focusedNodeId, setFocusedNodeId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const explorerRef = useRef(null);
   const nodeRefsMap = useRef(new Map());
+
+  useImperativeHandle(ref, () => ({
+    focusExplorer: () => {
+      if (focusedNodeId && nodeRefsMap.current.has(focusedNodeId)) {
+        nodeRefsMap.current.get(focusedNodeId)?.focus();
+      } else {
+        // Focus first visible node if none selected
+        const nodeIds = buildNodeList(filteredData);
+        if (nodeIds.length > 0) {
+          const firstNodeId = nodeIds[0];
+          setFocusedNodeId(firstNodeId);
+          setTimeout(() => nodeRefsMap.current.get(firstNodeId)?.focus(), 0);
+        }
+      }
+      onFocusChange?.();
+    }
+  }));
 
   // Register a node ref
   const registerNodeRef = (nodeId, ref) => {
@@ -146,7 +163,7 @@ const FileExplorer = ({ data, onSelectFile, selectedFile, onKeyboardNav }) => {
       });
       setFocusedNodeId(null);
     }
-  }, [searchQuery]);
+  }, [searchQuery, nodesToExpand]);
 
   // Reset focused node when data changes
   useEffect(() => {
@@ -196,6 +213,7 @@ const FileExplorer = ({ data, onSelectFile, selectedFile, onKeyboardNav }) => {
                 level={0}
                 onKeyDown={handleKeyDown}
                 registerRef={registerNodeRef}
+                onFocusChange={onFocusChange}
               />
             ))}
           </div>
@@ -207,10 +225,12 @@ const FileExplorer = ({ data, onSelectFile, selectedFile, onKeyboardNav }) => {
       </div>
 
       <div className="explorer-footer">
-        <small>Use ↑↓ to navigate, → to expand, ← to collapse, Enter to select</small>
+        <small>Use ↑↓ to navigate, →/← to move between sections, Enter to select</small>
       </div>
     </div>
   );
-};
+});
+
+FileExplorer.displayName = 'FileExplorer';
 
 export default FileExplorer;

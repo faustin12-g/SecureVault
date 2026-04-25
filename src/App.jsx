@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
 import Sidebar from './components/sidebar/Sidebar';
 import FileExplorer from './components/filexplorer/FileExplorer';
 import SidePanel from './components/sidePanel/SidePanel';
@@ -11,7 +10,6 @@ const App = () => {
   const [selectedFilePath, setSelectedFilePath] = useState('');
   const [data, setData] = useState(fileData);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [theme, setTheme] = useState('dark');
   const [focusSection, setFocusSection] = useState('explorer'); // 'sidebar', 'explorer', 'properties'
   
   const sidebarRef = useRef(null);
@@ -74,11 +72,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Load theme preference from localStorage
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    setTheme(savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
     // Add global keyboard listener for cross-section navigation
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
@@ -94,12 +87,7 @@ const App = () => {
     setSelectedFilePath('');
   };
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
+
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -121,9 +109,7 @@ const App = () => {
             <span></span>
             <span></span>
           </button>
-          <button className="theme-toggle-btn" onClick={toggleTheme} title="Toggle light/dark mode">
-            {theme === 'dark' ? <FiSun size={20} /> : <FiMoon size={20} />}
-          </button>
+
         </div>
         <div className="main-content">
           <div className="explorer-section">

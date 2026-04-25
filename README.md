@@ -50,6 +50,7 @@ SecureVault-Dashboard is a production-ready file management interface designed f
 - **Vite 8.0.10**: Lightning-fast build tool with HMR
 - **Tailwind CSS 4.2.4**: Utility-first CSS with custom design tokens
 - **React Icons 5.6.0**: Feather and Font Awesome icons
+- **Inter Font**: Google Fonts typography (H1-24px/600, H2-18px/500, H3-16px/500, Body-14px/400, Caption-12px/400)
 - **Vanilla CSS**: No component libraries—all components built from scratch
 
 ## Design System
@@ -57,7 +58,7 @@ SecureVault-Dashboard is a production-ready file management interface designed f
 The application uses a minimal **4-color design system** defined in [src/index.css](src/index.css):
 
 ```css
-/* Dark Theme (Default) */
+/* Dark Theme (Cyber-Secure Aesthetic) */
 :root {
   --color-bg: #000000;           /* Pure black background */
   --color-surface: #181819;      /* Slightly lighter for UI elements */
@@ -65,19 +66,10 @@ The application uses a minimal **4-color design system** defined in [src/index.c
   --color-text: #E5E7EB;         /* Light gray text */
   --color-border: #161616;       /* Subtle borders */
 }
-
-/* Light Theme */
-:root[data-theme="light"] {
-  --color-bg: #FFFFFF;
-  --color-surface: #F5F5F5;
-  --color-primary: #C6A75A;      /* Same golden accent */
-  --color-text: #101011;         /* Dark text */
-  --color-border: #8d8e90;
-}
 ```
 
 **Design Principles:**
-- **Dark Mode + Light Mode**: Toggle via Sun/Moon icon in header
+- **Dark Mode Only**: Cyber-secure, precise, fast aesthetic
 - **No Gradients**: Solid colors only for consistency and maintainability
 - **No Component Libraries**: 100% custom React components with vanilla CSS
 - **Responsive**: Breakpoints at 1200px, 1024px, 768px
@@ -93,8 +85,8 @@ The application uses a minimal **4-color design system** defined in [src/index.c
 
 ```bash
 # Clone the repository
-git clone https://github.com/[username]/SecureVault-Dashboard.git
-cd SecureVault-Dashboard
+git clone https://github.com/faustin12-g/SecureVault.git
+cd SecureVault
 
 # Install dependencies
 npm install
@@ -126,7 +118,6 @@ The file tree uses a **recursive React component** pattern:
 
 **Key Implementation Details:**
 ```jsx
-// Pseudo-code showing recursion pattern
 <FileNode data={item}>
   {expandedFolders.has(item.id) && 
     item.children?.map(child => (
@@ -216,7 +207,6 @@ Build visible array → Update focus via ref → Re-render → Focus moves
 ### Other
 | Key | Action |
 |-----|--------|
-| Theme Toggle Icon | Switch between Dark/Light mode |
 | Hamburger Menu | Toggle sidebar (220px ↔ 70px) |
 
 ## Project Structure
@@ -320,7 +310,6 @@ The application reads from `src/assets/data.json`:
 - [x] Global keyboard event handler coordinates all sections
 
 ### Bonus Features ✓
-- [x] **Theme Toggle**: Dark mode (default) and Light mode with persistent storage
 - [x] **Sidebar Toggle**: Hamburger menu minimizes sidebar (220px → 70px)
 - [x] **Custom Logo Icon**: Imported custom PNG icon for branding
 - [x] **4-Color Design System**: Minimal, maintainable CSS variables

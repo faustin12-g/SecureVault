@@ -36,7 +36,7 @@
 }
 
 .file-node.selected .file-name {
-  font-weight: 600;
+  font-weight: var(--h2-font-weight);
   color: var(--color-primary);
 }
 
@@ -96,8 +96,8 @@
 /* File/folder name */
 .file-name {
   flex: 1;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--body-font-size);
+  font-weight: var(--h2-font-weight);
   color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
@@ -109,7 +109,7 @@
   display: inline-block;
   margin-left: auto;
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: var(--caption-font-size);
   color: var(--color-text);
   font-family: monospace;
   min-width: max-content;
@@ -124,14 +124,14 @@
   height: 28px;
   padding: 4px 8px;
   margin: 2px 0;
-  font-size: 12px;
+  font-size: var(--caption-font-size);
   color: var(--color-text);
   font-style: italic;
   margin-left: calc(16px + 16px + 8px);
 }
 
 .empty-folder span {
-  font-size: 14px;
+  font-size: var(--body-font-size);
 }
 
 /* Children container (for nested items) */

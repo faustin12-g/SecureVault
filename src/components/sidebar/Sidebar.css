@@ -65,8 +65,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--h2-font-size);
+  font-weight: var(--h2-font-weight);
   color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -98,7 +98,7 @@
 .nav-section h3 {
   margin: 0 0 12px 0;
   padding: 0 16px;
-  font-size: 11px;
+  font-size: var(--caption-font-size);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -121,8 +121,8 @@
   cursor: pointer;
   transition: all 150ms ease-in-out;
   color: var(--color-text);
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--body-font-size);
+  font-weight: var(--h2-font-weight);
 }
 
 .nav-item svg {
@@ -166,7 +166,7 @@
 
 .sidebar-storage h4 {
   margin: 0 0 12px 0;
-  font-size: 11px;
+  font-size: var(--caption-font-size);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -196,14 +196,14 @@
 
 .storage-text {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--body-font-size);
   font-weight: 600;
   color: var(--color-text);
 }
 
 .storage-size {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--caption-font-size);
   color: var(--color-text);
 }
 
@@ -214,7 +214,7 @@
   border-radius: 6px;
   background-color: transparent;
   color: var(--color-primary);
-  font-size: 13px;
+  font-size: var(--body-font-size);
   font-weight: 600;
   cursor: pointer;
   transition: all 150ms ease-in-out;

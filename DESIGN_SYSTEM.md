@@ -1,19 +1,18 @@
 # SecureVault Dashboard - Design System
 
 ## Brand Identity
-**Theme**: Dark & Light Modes, Cyber-Secure, Precise, Fast
+**Theme**: Dark Mode (Cyber-Secure Aesthetic)
 **Target Users**: Lawyers, bankers, power users who need fast navigation and accessibility
-**Principle**: Minimal 4-color system, no gradients, variable-based colors for theme flexibility
+**Principle**: Minimal 4-color system, no gradients, variable-based colors for consistency
 
 ---
 
 ## Color Palette
 
-### 4-Color System (Dark & Light Modes)
+### 4-Color Dark Mode System
 
 **CSS Custom Properties** (defined in `src/index.css`):
 
-#### Dark Theme (Default)
 ```css
 --color-bg: #000000;           /* Pure black background */
 --color-surface: #181819;      /* Slightly lighter for UI elements */
@@ -22,40 +21,38 @@
 --color-border: #161616;       /* Subtle borders */
 ```
 
-#### Light Theme (Toggle via Sun/Moon Icon)
-```css
---color-bg: #FFFFFF;           /* White background */
---color-surface: #F5F5F5;      /* Light gray for UI elements */
---color-primary: #C6A75A;      /* Same golden accent */
---color-text: #101011;         /* Dark text for contrast */
---color-border: #8d8e90;       /* Gray borders */
-```
-
 ### Design Philosophy
 - **No gradients**: All solid colors for consistency
 - **No opacity variants**: Each color is intentional and explicit
 - **Semantic naming**: Variables describe purpose, not hue
-- **Theme agnostic**: Same primary golden color works in both modes
+- **Dark mode only**: Cyber-secure, precise, fast aesthetic
 - **Easy maintenance**: Change 4 variables, entire app updates
 
 ---
 
 ## Typography Scale
 
-| Name | Size | Weight | Usage |
-|------|------|--------|-------|
-| **Header** | 20px | 700 (bold) | Section headers ("MY VAULT", "PROPERTIES") |
-| **Headline 2** | 18px | 600 | File name in properties panel |
-| **Body Large** | 14px | 500 (medium) | File/folder names in tree |
-| **Body Regular** | 13px | 400 (normal) | Description text, properties labels |
-| **Body Small** | 12px | 400 | Metadata, file sizes, tags |
-| **Label Small** | 11px | 700 | Section labels ("VAULT", "STORAGE") |
-| **Mono** | 12px | 400 | File extensions, technical info |
+**Font Family**: Inter (imported from Google Fonts)
 
-**Font Family**: System stack for performance
+| Level | Size | Weight | Usage |
+|-------|------|--------|-------|
+| **H1** | 24px | Semi Bold (600) | Major headers, titles |
+| **H2** | 18px | Medium (500) | Section headers ("MY VAULT", "PROPERTIES") |
+| **H3** | 16px | Medium (500) | Subsection headers, tag buttons |
+| **Body** | 14px | Regular (400) | File/folder names, descriptions, UI text |
+| **Caption** | 12px | Regular (400) | Labels, metadata, file sizes, hints |
+
+**CSS Variables** (defined in `src/index.css`):
 ```css
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+--font-family: "Inter", system fonts fallback;
+--h1-font-size: 24px;   --h1-font-weight: 600;
+--h2-font-size: 18px;   --h2-font-weight: 500;
+--h3-font-size: 16px;   --h3-font-weight: 500;
+--body-font-size: 14px; --body-font-weight: 400;
+--caption-font-size: 12px; --caption-font-weight: 400;
 ```
+
+**Usage**: Apply typography variables across all components for consistency
 
 ---
 
@@ -114,7 +111,7 @@ Base unit: **4px**
 ### 3-Column Layout
 ```
 ┌─────────────────────────────────────────┐
-│ [☰] Hamburger        [☀/☾] Theme       │ ← Header Bar (50px fixed)
+│ [☰] Hamburger              [Minimize]   │ ← Header Bar (50px fixed)
 ├─────────────────────────────────────────┤
 │        │ EXPLORER (flex: 1) │ PROPERTIES│
 │ SIDEBAR│ • Folders/Files   │ (350px)  │
@@ -133,8 +130,7 @@ Base unit: **4px**
 ### Header Bar Features
 - **Position**: 50px fixed at top, spans full width
 - **Hamburger Toggle**: Left side, toggles sidebar open/closed
-- **Theme Toggle**: Right side, FiSun (dark mode) / FiMoon (light mode) icons
-- **Icons**: Both interactive with hover states using primary color
+- **Icons**: Interactive with hover states using primary color
 
 ### File Item
 - **Height**: 32px (comfortable touch target)
@@ -182,13 +178,6 @@ Base unit: **4px**
 - **Case Insensitive**: User-friendly search
 - **Clear Button**: X icon appears when text present
 - **Real-time**: Updates as user types
-
-### Theme Toggle (Feature)
-- **Icon**: FiSun (dark mode) or FiMoon (light mode)
-- **Position**: Top-right header bar
-- **Action**: Toggles `data-theme` attribute on `<html>` element
-- **Storage**: localStorage persistence as 'theme'
-- **Transition**: 200ms color transition
 
 ### Sidebar Toggle - Hamburger (Feature)
 - **Icon**: 3 horizontal bars (hamburger)

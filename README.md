@@ -100,7 +100,7 @@ npm run build
 npm run preview
 ```
 
-## 📚 Architecture & Implementation
+## Architecture & Implementation
 
 ### Recursive Strategy
 
@@ -168,7 +168,7 @@ Build visible array → Update focus via ref → Re-render → Focus moves
 
 **Why This Matters**: Legal and financial professionals need quick access to documents buried in structures. This reduces frustration and improves workflow efficiency.
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Key | Action |
 |-----|--------|
@@ -179,7 +179,7 @@ Build visible array → Update focus via ref → Re-render → Focus moves
 | <kbd>Enter</kbd> | Select file |
 | <kbd>Ctrl+K</kbd> or Focus search bar | Start searching |
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 src/
@@ -205,7 +205,7 @@ src/
 └── DESIGN_SYSTEM.md                 # Design documentation
 ```
 
-## 🎨 Design File
+## Design File
 
 Design System Documentation: [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)
 
@@ -217,7 +217,7 @@ This file includes:
 - State definitions (hover, active, focus, disabled)
 - Dark mode justification
 
-## 📊 Data Structure
+## Data Structure
 
 The application reads from `src/assets/data.json`:
 
@@ -244,7 +244,7 @@ The application reads from `src/assets/data.json`:
 - File size metadata
 - 9+ file type detection (PDF, Word, Excel, Code, Images, Video, Audio, Text, Archives)
 
-## ✅ Acceptance Criteria - All Met
+## Acceptance Criteria - All Met
 
 ### Story 1: Recursive Tree ✓
 - [x] UI renders folder structure from JSON
@@ -271,7 +271,7 @@ The application reads from `src/assets/data.json`:
 - [x] Auto-expand matching parent folders
 - [x] Case-insensitive matching
 
-## 🔒 Gatekeeper Checklist
+## Gatekeeper Checklist
 
 - [x] **Public Repository**: GitHub set to public
 - [x] **Audit-Ready History**: Multiple commits showing progression
@@ -280,7 +280,7 @@ The application reads from `src/assets/data.json`:
 - [x] **Design File Access**: [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) included
 - [x] **Professional Documentation**: This README replaces assignment instructions
 
-## 🚢 Deployment
+## Deployment
 
 This application is ready for deployment on:
 - **Vercel** (recommended - optimized for Vite)
@@ -290,7 +290,7 @@ This application is ready for deployment on:
 
 **Build Output**: `dist/` folder contains optimized production bundle
 
-## 📝 Git Commit History
+## Git Commit History
 
 Recommended commits for this project:
 ```
@@ -305,13 +305,13 @@ Recommended commits for this project:
 9. Responsive design and final polish
 ```
 
-## 🤝 Contributing
+## Contributing
 
 This is a demonstration project for AmaliTech DEG challenge. For production use, please review:
 - Security implications of file structure exposure
 - API integration for real backend data
 - User authentication and authorization
 
-## 📄 License
+## License
 
 Built as part of AmaliTech DEG Project-Based Challenge

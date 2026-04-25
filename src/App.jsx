@@ -10,19 +10,16 @@ const App = () => {
   const [selectedFilePath, setSelectedFilePath] = useState('');
   const [data, setData] = useState(fileData);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [focusSection, setFocusSection] = useState('explorer'); // 'sidebar', 'explorer', 'properties'
+  const [focusSection, setFocusSection] = useState('explorer'); 
   
   const sidebarRef = useRef(null);
   const explorerRef = useRef(null);
   const panelRef = useRef(null);
 
-  // Global keyboard handler for cross-section navigation
   const handleGlobalKeyDown = (e) => {
-    // Tab key to move focus right between sections
     if (e.key === 'Tab') {
       e.preventDefault();
       if (e.shiftKey) {
-        // Shift+Tab - move focus left
         if (focusSection === 'properties') {
           setFocusSection('explorer');
           setTimeout(() => explorerRef.current?.focusExplorer(), 0);
@@ -31,7 +28,6 @@ const App = () => {
           setTimeout(() => sidebarRef.current?.focusSidebar(), 0);
         }
       } else {
-        // Tab - move focus right
         if (focusSection === 'sidebar') {
           setFocusSection('explorer');
           setTimeout(() => explorerRef.current?.focusExplorer(), 0);
@@ -42,8 +38,6 @@ const App = () => {
       }
       return;
     }
-
-    // Arrow keys for section navigation (only when not in search input)
     const activeElement = document.activeElement;
     const isSearchActive = activeElement?.className?.includes('search-input');
     const isSidePanelInput = activeElement?.className?.includes('panel-input') || activeElement?.tagName === 'INPUT';
@@ -72,7 +66,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Add global keyboard listener for cross-section navigation
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, [focusSection, selectedFile, handleGlobalKeyDown]);

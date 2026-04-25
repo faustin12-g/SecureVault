@@ -3,7 +3,7 @@
 ## Brand Identity
 **Theme**: Dark Mode (Cyber-Secure Aesthetic)
 **Target Users**: Lawyers, bankers, power users who need fast navigation and accessibility
-**Principle**: Minimal 4-color system, no gradients, variable-based colors for consistency
+**Principle**: Minimal 4-color system.
 
 ---
 
@@ -14,16 +14,14 @@
 **CSS Custom Properties** (defined in `src/index.css`):
 
 ```css
---color-bg: #000000;           /* Pure black background */
---color-surface: #181819;      /* Slightly lighter for UI elements */
---color-primary: #C6A75A;      /* Golden accent for interactive elements */
---color-text: #E5E7EB;         /* Light gray text */
---color-border: #161616;       /* Subtle borders */
+--color-bg: #000000;        
+--color-surface: #181819;   
+--color-primary: #C6A75A;     
+--color-text: #E5E7EB;        
+--color-border: #161616;      
 ```
 
 ### Design Philosophy
-- **No gradients**: All solid colors for consistency
-- **No opacity variants**: Each color is intentional and explicit
 - **Semantic naming**: Variables describe purpose, not hue
 - **Dark mode only**: Cyber-secure, precise, fast aesthetic
 - **Easy maintenance**: Change 4 variables, entire app updates
@@ -97,7 +95,7 @@ Base unit: **4px**
 ### 3-Column Layout
 ```
 ┌─────────────────────────────────────────┐
-│ [☰] Hamburger  Sidebar  [☀/☾] Theme    │ ← Header Bar (50px)
+│ [☰] Hamburger  Sidebar  Theme    │ ← Header Bar (50px)
 ├─────────────────────────────────────────┤
 │        │ EXPLORER (flex: 1) │ PROPERTIES│
 │ SIDEBAR│ • Folders/Files   │ (350px)  │
@@ -211,7 +209,6 @@ All borders use CSS variables for theme consistency. No hardcoded colors.
 | Item hover | Background fade | 150ms | ease-in-out |
 | Button click | Scale + opacity | 150ms | ease-in-out |
 | Sidebar toggle | Width transition | 300ms | ease-in-out |
-| Theme switch | Color transition | 200ms | ease-in-out |
 | Focus ring | Outline fade | 100ms | ease-in |
 
 **Principle**: Fast, snappy, no jarring delays. Max 300ms for any animation.
@@ -223,8 +220,7 @@ All borders use CSS variables for theme consistency. No hardcoded colors.
 ```
 App (Global State Management - focusSection: sidebar|explorer|properties)
 ├── Header Bar (50px fixed)
-│   ├── HamburgerToggle (sidebar 220px ↔ 70px)
-│   └── ThemeToggle (FiSun / FiMoon)
+│   └── HamburgerToggle (sidebar 220px ↔ 70px)
 ├── Sidebar (220px / 70px with transition)
 │   ├── Header (Custom Logo: assets/images/icon.png)
 │   ├── Nav Section
@@ -281,7 +277,7 @@ Using React Icons (Feather + Font Awesome):
 
 | Type | Icon | Color |
 |------|------|-------|
-| Folder | FiFolder | primary (#3B82F6) |
+| Folder | FiFolder | text (#E5E7EB) |
 | PDF | FaFilePdf | #EF4444 (red) |
 | Word | FaFileWord | #3B82F6 (blue) |
 | Excel | FaFileExcel | #10B981 (green) |
@@ -296,11 +292,9 @@ Using React Icons (Feather + Font Awesome):
 
 ## Accessibility
 
-- **Keyboard Navigation**: Arrow keys, Enter, Tab focus management
+- **Keyboard Navigation**: Arrow keys, Enter, Tab focus management for cross-section navigation
 - **Focus Management**: All interactive elements have visible focus ring (2px primary)
-- **Color Contrast**: WCAG AA compliant
-  - Dark mode: Light gray (#E5E7EB) on black meets AA
-  - Light mode: Dark gray (#1F2937) on white meets AA
+- **Color Contrast**: WCAG AA compliant - Light gray (#E5E7EB) on black background
 - **Screen Reader**: Proper semantic HTML, aria labels on buttons
 - **Responsive**: Works on 1200px, 1024px, 768px breakpoints
 
@@ -316,21 +310,14 @@ Using React Icons (Feather + Font Awesome):
 
 ---
 
-## Dark Mode Benefits
+## Dark Mode Only
 
-- **Reduce eye strain**: Especially for long work sessions (legal review)
+**Why Dark Mode?**
+- **Reduce eye strain**: Especially for long work sessions (legal review and financial analysis)
 - **Battery savings**: On OLED displays
-- **Professional aesthetic**: Security-focused, serious tone
+- **Professional aesthetic**: Security-focused, serious tone appropriate for SecureVault Inc.
 - **Accessibility**: Better for users with light sensitivity
-
----
-
-## Light Mode Benefits
-
-- **High contrast**: Better readability in bright environments
-- **Accessibility**: Preference for some users, WCAG compliance
-- **Professional variation**: Different context, same professional aesthetic
-- **Theme flexibility**: User choice improves satisfaction
+- **Single source of truth**: Eliminates theme toggle complexity and reduces CSS variable overhead
 
 ---
 

@@ -86,7 +86,7 @@ Base unit: **4px**
 ### Search Input
 - **Idle**: background-color bg, border 1px surface
 - **Focus**: border-color primary, background-color surface
-- **Placeholder**: color text (higher opacity in light mode)
+- **Placeholder**: color text with reduced opacity
 
 ---
 
@@ -95,21 +95,7 @@ Base unit: **4px**
 ### 3-Column Layout
 ```
 ┌─────────────────────────────────────────┐
-│ [☰] Hamburger  Sidebar  Theme    │ ← Header Bar (50px)
-├─────────────────────────────────────────┤
-│        │ EXPLORER (flex: 1) │ PROPERTIES│
-│ SIDEBAR│ • Folders/Files   │ (350px)  │
-│ (220px)│ • Keyboard Nav    │ • Metadata│
-│ Toggle │ • Search Auto-Exp │ • Tags    │
-│ Icons  │                   │ • Actions │
-│(60px)  │                   │           │
-└─────────────────────────────────────────┘
-```
-
-### 3-Column Layout
-```
-┌─────────────────────────────────────────┐
-│ [☰] Hamburger              [Minimize]   │ ← Header Bar (50px fixed)
+│ [☰] Hamburger                           │ ← Header Bar (50px fixed)
 ├─────────────────────────────────────────┤
 │        │ EXPLORER (flex: 1) │ PROPERTIES│
 │ SIDEBAR│ • Folders/Files   │ (350px)  │
@@ -255,19 +241,6 @@ App (Global State Management - focusSection: sidebar|explorer|properties)
 - `Tab` → Sidebar → Explorer → Properties
 - `Shift+Tab` ← Properties ← Explorer ← Sidebar
 - `Arrow Right` / `Arrow Left` ← → Between sections
-│       │           ├── Chevron (expand/collapse)
-│       │           ├── Icon (file type colored)
-│       │           ├── Name (flex grow)
-│       │           ├── Size (monospace)
-│       │           └── Children (if expanded)
-│       └── SidePanel
-│           ├── Header ("PROPERTIES" + close btn)
-│           ├── FileHeader (icon + name)
-│           ├── DetailsSection (Name, Type, Size, Location, Modified, Created, Owner)
-│           ├── TagsSection (HR, Policies, Document, +add)
-│           ├── PermissionsSection (access level + manage)
-│           └── ActionsSection (Download, Share, Copy Path)
-```
 
 ---
 
@@ -302,8 +275,7 @@ Using React Icons (Feather + Font Awesome):
 
 ## Performance Considerations
 
-- **CSS Variables**: Single source of truth for colors, no re-renders needed on theme switch
-- **No Gradients**: Solid colors are cheaper to render
+- **CSS Variables**: Single source of truth for colors, consistent theming
 - **Flex Layout**: GPU-accelerated, no layout thrashing
 - **CSS Transitions**: Hardware accelerated animations
 - **Minimal Re-renders**: React state focused, component separation proper
@@ -321,57 +293,3 @@ Using React Icons (Feather + Font Awesome):
 
 ---
 
-## File Type Icons Strategy
-
-Simple emoji + text approach:
-- Folder
-- Document (.pdf, .docx, .txt)
-- Spreadsheet (.xlsx, .csv)
-- Image (.png, .jpg, .svg)
-- Config (.yaml, .json, .config)
-- Archive (.zip, .rar)
-- Video (.mp4, .mov)
-- Audio (.mp3, .wav)
-
----
-
-## CSS Custom Properties (Reusable Color System)
-
-All colors are defined as CSS custom properties in `:root` for easy reuse across the project:
-
-```css
-:root {
-  --color-bg: #0B0F17;
-  --color-surface: #111827;
-  --color-surface-2: #1F2937;
-  --color-border: #2D3748;
-  --color-primary: #3B82F6;
-  --color-text: #E5E7EB;
-  --color-text-secondary: #9CA3AF;
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-}
-```
-
-### Usage
-Use `var(--color-*)` in any CSS file to reference these colors consistently.
-
-Example:
-```css
-.component {
-  background-color: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-```
-
-### Tailwind Integration
-Colors are also available in Tailwind CSS as `vault.*`:
-```jsx
-<div className="bg-vault-bg text-vault-text border border-vault-border">
-  Content
-</div>
-```
-
----

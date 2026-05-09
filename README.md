@@ -25,6 +25,8 @@ Build an optimized production bundle and preview it locally before deployment. T
 
 ## Design File
 
+Link to Figma design: [Figma Design](https://www.figma.com/design/yr88PJXYD8zaRVXAJOH8Sq/SecureVault-File-Explorer?node-id=35-725&t=w06WuO5v4VHIEEsG-1)
+Link to live Demo: [Live Link](https://secure-vault-nine-blush.vercel.app/)
 Link to complete design documentation: [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md)
 
 ---
